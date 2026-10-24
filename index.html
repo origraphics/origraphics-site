@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Origraphics: type a topic, get a Short</title>
+<meta name="description" content="Origraphics turns a topic into a finished vertical Short: kinetic type, simulations, vote hooks and voiceover. Join the waitlist.">
+<meta property="og:title" content="Origraphics">
+<meta property="og:description" content="Type a topic. Get a finished Short. Join the waitlist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000;
+  --orange:#FF5A1F;
+  --blue:#2340FF;
+  --paper:#EFE9DC;
+  --white:#FFFFFF;
+  --grey:#8C877C;
+  --gutter:clamp(16px,4vw,64px);
+  --wide:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--black);color:var(--white);font-family:Archivo,system-ui,sans-serif;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--white);outline-offset:3px}
+.wrap{max-width:var(--wide);margin:0 auto;padding:0 var(--gutter)}
+.display{font-weight:900;font-stretch:125%;letter-spacing:-0.02em;line-height:0.9;margin:0}
+.aside{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
+.mark{font-weight:900;letter-spacing:-0.05em}
+
+/* top bar */
+.bar{position:absolute;top:0;left:0;right:0;z-index:2}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;height:72px}
+.logo{font-weight:900;font-stretch:115%;font-size:22px;text-decoration:none;color:var(--black);display:flex;gap:10px;align-items:baseline}
+.bar a.join{font-weight:700;font-size:16px;color:var(--black);text-decoration:none;border-bottom:2px solid var(--black);padding:10px 0}
+
+/* hero */
+.hero{background:var(--orange);color:var(--black);padding:140px 0 72px;min-height:92vh;display:flex;align-items:center}
+.hero h1{font-size:clamp(56px,11.5vw,176px)}
+.hero h1 span{display:block}
+.prompt{margin-top:48px;max-width:860px;background:var(--black);color:var(--white);padding:22px 26px;display:flex;gap:14px;align-items:center;font-size:clamp(18px,2.2vw,26px);font-weight:600;min-height:76px}
+.prompt .mark{color:var(--orange)}
+.prompt .caret{display:inline-block;width:0.55em;height:1.05em;background:var(--white);vertical-align:-0.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-foot{margin-top:28px;display:flex;flex-wrap:wrap;gap:24px 40px;align-items:baseline;justify-content:space-between;max-width:860px}
+.hero-foot p{margin:0;font-size:clamp(22px,2.4vw,30px);line-height:1.25;max-width:540px}
+.btn{display:inline-flex;align-items:center;min-height:56px;padding:0 30px;background:var(--black);color:var(--white);font:700 18px/1 Archivo,sans-serif;border:0;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--blue)}
+
+/* proof */
+.proof{background:var(--blue);padding:96px 0}
+.proof-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:48px}
+.proof h2{font-size:clamp(40px,6vw,88px)}
+.proof-head p{margin:0;max-width:420px;font-size:24px;line-height:1.3}
+.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.reel{margin:0}
+.reel .frame{aspect-ratio:9/16;background:var(--black);overflow:hidden}
+.reel iframe{width:100%;height:100%;border:0;display:block}
+.reel figcaption{margin-top:14px;font-size:16px;line-height:1.4}
+.reel figcaption strong{display:block;font-size:19px;font-weight:800}
+
+/* formats */
+.formats{background:var(--paper);color:var(--black);padding:112px 0}
+.formats h2{font-size:clamp(44px,7vw,104px);margin-bottom:20px}
+.formats .lede{font-size:clamp(22px,2.4vw,30px);line-height:1.3;max-width:640px;margin:0 0 56px}
+.format{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr) minmax(0,4fr);gap:24px 40px;padding:32px 0;border-top:3px solid var(--black);align-items:baseline}
+.format:last-child{border-bottom:3px solid var(--black)}
+.format h3{margin:0;font-weight:900;font-stretch:118%;font-size:clamp(28px,3.4vw,44px);line-height:1}
+.format p{margin:0;font-size:18px;line-height:1.55;max-width:46ch}
+.format .ex{font-size:22px;line-height:1.3;color:#3A362F}
+.format.soon h3::after{content:"later";font:italic 400 20px "Instrument Serif",serif;margin-left:12px;color:var(--grey);vertical-align:middle}
+
+/* steps */
+.steps{padding:112px 0}
+.steps h2{font-size:clamp(44px,7vw,104px);margin-bottom:56px}
+.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;counter-reset:s}
+.steps li{counter-increment:s;border-top:3px solid var(--orange);padding-top:20px}
+.steps li::before{content:counter(s);display:block;font-weight:900;font-stretch:125%;font-size:64px;line-height:1;color:var(--orange);margin-bottom:16px}
+.steps li strong{display:block;font-size:22px;font-weight:800;margin-bottom:8px}
+.steps li span{color:#C9C4B9;font-size:17px;line-height:1.55}
+
+/* waitlist */
+.wait{background:var(--orange);color:var(--black);padding:112px 0}
+.wait h2{font-size:clamp(48px,9vw,140px)}
+.wait .lede{font-size:clamp(22px,2.6vw,32px);line-height:1.25;margin:24px 0 40px;max-width:620px}
+form{display:flex;flex-wrap:wrap;gap:12px;max-width:760px}
+label.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+input[type=email]{flex:1 1 300px;min-height:60px;padding:0 20px;border:3px solid var(--black);background:var(--white);color:var(--black);font:500 18px Archivo,sans-serif;border-radius:0}
+input[type=email]:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+form .btn{min-height:60px}
+.hp{position:absolute;left:-9999px}
+.msg{margin-top:20px;font-size:19px;font-weight:600;min-height:1.5em}
+.small{margin-top:12px;font-size:15px;color:#3A1A08}
+
+footer{padding:40px 0}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:15px;color:var(--grey)}
+footer a{color:var(--white)}
+
+@media (max-width:900px){
+  .reels{grid-template-columns:minmax(0,1fr);max-width:380px}
+  .format{grid-template-columns:minmax(0,1fr)}
+  .steps ol{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .steps ol{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-top:110px}
+}
+@media (prefers-reduced-motion:reduce){
+  .prompt .caret{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Origraphics home"><span class="mark">&gt;▌</span>origraphics</a>
+    <a class="join" href="#waitlist">Join the waitlist</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero">
+  <div class="wrap">
+    <h1 class="display"><span>Type a topic.</span><span>Get a Short.</span></h1>
+    <div class="prompt" aria-live="off">
+      <span class="mark" aria-hidden="true">&gt;</span>
+      <span><span id="typed">3 doors. 1 car. do you switch?</span><span class="caret" aria-hidden="true"></span></span>
+    </div>
+    <div class="hero-foot">
+      <p class="aside">Kinetic type, simulations, vote hooks and a voiceover. A finished vertical video, ready to post.</p>
+      <a class="btn" href="#waitlist">Join the waitlist</a>
+    </div>
+  </div>
+</section>
+
+<section class="proof" aria-labelledby="proof-h">
+  <div class="wrap">
+    <div class="proof-head">
+      <h2 id="proof-h" class="display">Made with<br>this engine</h2>
+      <p class="aside">Every Short on An AI Tries YouTube was built with the engine behind Origraphics. The town video passed 96,000 views on Instagram in its first day.</p>
+    </div>
+    <div class="reels">
+      <figure class="reel">
+        <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/U4CkdxxUHEA" title="I built a town with no laws" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        <figcaption><strong>Simulation</strong>100 people, no laws, one year.</figcaption>
+      </figure>
+      <figure class="reel">
+        <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/B5YcIlz4ZsM" title="3 doors. 1 car. Do you switch?" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        <figcaption><strong>Vote hook</strong>A puzzle the comments argue about.</figcaption>
+      </figure>
+      <figure class="reel">
+        <div class="frame"><iframe src="https://www.youtube-nocookie.com/embed/kAHuSGVFbbk" title="I did the math on a trillion seconds" loading="lazy" allow="encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        <figcaption><strong>Scale fact</strong>A trillion seconds, made visible.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="formats" aria-labelledby="formats-h">
+  <div class="wrap">
+    <h2 id="formats-h" class="display">Four formats</h2>
+    <p class="lede aside">Pick one, type your topic, read the script, render. Your topic and your colours, not ours.</p>
+    <div class="format">
+      <h3>Vote hook</h3>
+      <p>A question or puzzle with a comment vote, then a follow-up with the real answer.</p>
+      <p class="ex aside">“3 doors. 1 car. Do you switch?”</p>
+    </div>
+    <div class="format">
+      <h3>Scale fact</h3>
+      <p>Big numbers turned into counters, timelines and comparisons that build on screen.</p>
+      <p class="ex aside">“A trillion seconds is longer than you think.”</p>
+    </div>
+    <div class="format soon">
+      <h3>Simulation</h3>
+      <p>People, rules and one run, rendered as pixel art. Change a rule and see what happens.</p>
+      <p class="ex aside">“100 people. No laws. One year.”</p>
+    </div>
+    <div class="format soon">
+      <h3>Story</h3>
+      <p>Animated phones, comments and analytics screens for telling a channel’s own story.</p>
+      <p class="ex aside">“200 billion views a day. I have 6,000.”</p>
+    </div>
+  </div>
+</section>
+
+<section class="steps" aria-labelledby="steps-h">
+  <div class="wrap">
+    <h2 id="steps-h" class="display">How it works</h2>
+    <ol>
+      <li><strong>Pick a format</strong><span>Vote hook or scale fact at launch. More after.</span></li>
+      <li><strong>Type a topic</strong><span>One line is enough. The script is written for you, scene by scene.</span></li>
+      <li><strong>Check the script</strong><span>Change any line before anything renders.</span></li>
+      <li><strong>Download the video</strong><span>9:16 with voice and captions, ready for Shorts, Reels and TikTok.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="wait" id="waitlist" aria-labelledby="wait-h">
+  <div class="wrap">
+    <h2 id="wait-h" class="display">Not open yet.</h2>
+    <p class="lede aside">Leave your email. You get one message when Origraphics opens, and early access before anyone else.</p>
+    <form id="wl" novalidate>
+      <label class="sr" for="email">Email address</label>
+      <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn" type="submit">Join the waitlist</button>
+    </form>
+    <p class="msg" id="msg" role="status"></p>
+    <p class="small">No spam. No sharing your email. Unsubscribe by replying “stop”. Read the <a href="privacy.html">privacy policy</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Origraphics · <a href="mailto:origraphics@origraphics.com">origraphics@origraphics.com</a> · <a href="privacy.html">Privacy</a></span>
+    <span>Made by the AI behind <a href="https://www.youtube.com/@An_AI_Tries_YouTube">An AI Tries YouTube</a></span>
+  </div>
+</footer>
+
+<script>
+// Paste the Google Apps Script web app URL here once it is deployed.
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbyzbhmaXVhRlDoazZn9nuxSKKztRRfQwuPRt7KASONPTy6vwpWuAk6qmAwZ4fWi1d9W/exec";
+
+// Hero: cycle example topics in the prompt bar.
+(function(){
+  const topics = ["3 doors. 1 car. do you switch?","a trillion seconds, in years","100 people, no laws, one year","how big is a billion?","23 people in a room. shared birthday?"];
+  const el = document.getElementById("typed");
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let i = 0, j = topics[0].length, deleting = true;
+  function tick(){
+    const t = topics[i];
+    if (deleting){ j--; if (j <= 0){ deleting = false; i = (i + 1) % topics.length; } }
+    else { j++; if (j >= topics[i].length){ deleting = true; el.textContent = topics[i]; return setTimeout(tick, 2200); } }
+    el.textContent = topics[i].slice(0, Math.max(j,0));
+    setTimeout(tick, deleting ? 28 : 55);
+  }
+  setTimeout(tick, 2400);
+})();
+
+// Waitlist form.
+document.getElementById("wl").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const msg = document.getElementById("msg");
+  const email = this.email.value.trim();
+  if (this.website.value) return;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ msg.textContent = "That email doesn’t look right. Check it and try again."; return; }
+  if (!SHEET_URL){ msg.textContent = "The waitlist isn’t connected yet. Email origraphics@origraphics.com instead."; return; }
+  const btn = this.querySelector("button"); btn.disabled = true; btn.textContent = "Joining…";
+  try{
+    await fetch(SHEET_URL, {method:"POST", mode:"no-cors", body:new URLSearchParams({email, source:location.search || "direct"})});
+    msg.textContent = "You’re on the list. One email when it opens.";
+    this.reset(); btn.textContent = "Joined";
+  }catch(err){
+    msg.textContent = "Couldn’t save that. Check your connection and try again.";
+    btn.disabled = false; btn.textContent = "Join the waitlist";
+  }
+});
+</script>
+</body>
+</html>
